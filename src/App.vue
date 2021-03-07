@@ -17,12 +17,16 @@
 body {
   margin: 0;
   font-family: Avenir, Helvetica, Arial, sans-serif;
+  background-color: #999;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  overflow: hidden;
 }
 .wrapper {
-  max-width: 1110px;
-  margin: 0 auto;
+  max-width: 786px;
+  margin-left: auto;
+  margin-right: auto;
 }
 // *** *** *** *** *** NAVIGATION *** *** *** *** ***
 #nav {

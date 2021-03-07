@@ -1,17 +1,28 @@
 <template>
-  <Reloj />
+  <div class="content">
+    <Reloj />
+    <Recordatorios />
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
 import Reloj from "@/components/Reloj.vue";
+import Recordatorios from "../components/Recordatorios.vue";
 
 export default {
   name: "Home",
   components: {
-    HelloWorld,
     Reloj,
+    Recordatorios,
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.content {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+}
+</style>

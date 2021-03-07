@@ -1,16 +1,21 @@
 <template>
-  <div class="reloj" :class="enPunto ? 'en-punto' : ''">
+  <div
+    class="reloj"
+    :class="{ 'en-punto': enPunto, 'reloj--minimized': minimized }"
+  >
     <div class="reloj__content">
-      <div class="hora">
-        <span class="hora-actual">{{ horaActual }}</span>
-        <span class="seconds">{{ seconds }}</span>
-        <span class="am-pm">{{ am_pm }}</span>
-      </div>
-      <div class="hora__footer">
-        <span class="fecha-actual">{{ fechaActual }}</span>
-        <span class="dia-actual">{{ diaActual }}</span>
-      </div>
+      <span class="reloj__hora">{{ horaActual }}</span>
+      <span class="reloj__seconds">{{ seconds }}</span>
+      <span class="reloj__am-pm">{{ am_pm }}</span>
+      <span class="reloj__fecha">{{ fechaActual }}</span>
+      <span class="reloj__dia">{{ diaActual }}</span>
     </div>
+    <span
+      role="button"
+      class="reloj__button"
+      :class="{ 'reloj__button--minimized': minimized }"
+      @click="cambiarMinimizado"
+    ></span>
   </div>
 </template>
 
@@ -18,6 +23,7 @@
 export default {
   data() {
     return {
+      minimized: false,
       horaActual: "00:00",
       seconds: "00",
       am_pm: "AM",
@@ -53,6 +59,9 @@ export default {
     setInterval(this.actualizarHora, 1000);
   },
   methods: {
+    cambiarMinimizado() {
+      this.minimized = !this.minimized;
+    },
     actualizarHora() {
       const date = new Date();
       // Hora Actual
@@ -105,40 +114,63 @@ export default {
   align-items: center;
   flex-direction: column;
   min-height: 100vh;
+  padding: 1rem;
   font-weight: bold;
-  font-size: 2rem;
-}
-.hora {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 0rem 1rem;
-}
-.hora-actual {
-  font-size: 20vw;
-  line-height: 1;
-  grid-row: 1 / span 2;
-  align-self: center;
-}
-.seconds,
-.am-pm {
-  font-size: 8vw;
-  line-height: 1;
-}
-.seconds {
-  align-self: flex-end;
-}
-.hora__footer {
-  display: grid;
-  grid-template-columns: auto auto;
-  gap: 1rem;
-  justify-content: space-between;
-  letter-spacing: 2px;
-}
-.fecha-actual,
-.dia-actual {
-  font-size: 4vw;
-  line-height: 1;
-  word-wrap: break-word;
+  position: relative;
+  &--minimized {
+    min-height: unset;
+  }
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0 1rem;
+  }
+  &__hora {
+    font-size: 20vw;
+    line-height: 1;
+    grid-row: 1 / span 2;
+    align-self: center;
+  }
+  &__seconds,
+  &__am-pm {
+    font-size: 8vw;
+    line-height: 1;
+  }
+  &__seconds {
+    align-self: flex-end;
+  }
+  &__fecha,
+  &__dia {
+    font-size: 4vw;
+    line-height: 1;
+    word-wrap: break-word;
+  }
+  &__button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: #555;
+    font-size: 1.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #fff;
+    line-height: 1;
+    cursor: pointer;
+    outline: 0;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    &::after {
+      content: "▲";
+    }
+    &--minimized {
+      &::after {
+        content: "▼";
+      }
+    }
+  }
 }
 .en-punto {
   filter: invert(100%);
