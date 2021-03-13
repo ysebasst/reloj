@@ -169,6 +169,7 @@ export default {
   }
   &__dia {
     flex: 1 1 30%;
+    text-align: right;
   }
   &__button {
     position: absolute;
