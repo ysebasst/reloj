@@ -4,11 +4,17 @@
     :class="{ 'en-punto': enPunto, 'reloj--minimized': minimized }"
   >
     <div class="reloj__content">
-      <span class="reloj__hora">{{ horaActual }}</span>
-      <span class="reloj__seconds">{{ seconds }}</span>
-      <span class="reloj__am-pm">{{ am_pm }}</span>
-      <span class="reloj__fecha">{{ fechaActual }}</span>
-      <span class="reloj__dia">{{ diaActual }}</span>
+      <div class="reloj__hora-completa">
+        <span class="reloj__hora">{{ horaActual }}</span>
+        <div class="reloj__seconds-am-pm">
+          <span class="reloj__seconds">{{ seconds }}</span>
+          <span class="reloj__am-pm">{{ am_pm }}</span>
+        </div>
+      </div>
+      <div class="reloj__fecha-dia">
+        <span class="reloj__fecha">{{ fechaActual }}</span>
+        <span class="reloj__dia">{{ diaActual }}</span>
+      </div>
     </div>
     <span
       role="button"
@@ -121,15 +127,25 @@ export default {
     min-height: unset;
   }
   &__content {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 0 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  &__hora-completa {
+    display: flex;
   }
   &__hora {
+    flex: 1 1 100%;
     font-size: 20vw;
     line-height: 1;
     grid-row: 1 / span 2;
     align-self: center;
+  }
+  &__seconds-am-pm {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   &__seconds,
   &__am-pm {
@@ -137,13 +153,22 @@ export default {
     line-height: 1;
   }
   &__seconds {
-    align-self: flex-end;
+    // align-self: flex-end;
+  }
+  &__fecha-dia {
+    display: flex;
   }
   &__fecha,
   &__dia {
     font-size: 4vw;
     line-height: 1;
     word-wrap: break-word;
+  }
+  &__fecha {
+    flex: 1 1 70%;
+  }
+  &__dia {
+    flex: 1 1 30%;
   }
   &__button {
     position: absolute;
