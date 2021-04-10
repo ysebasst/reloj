@@ -135,7 +135,7 @@ export default {
   }
   &__hora {
     flex: 1 1 100%;
-    font-size: 20vw;
+    font-size: 24vw;
     line-height: 1;
     grid-row: 1 / span 2;
     align-self: center;
@@ -149,34 +149,28 @@ export default {
   }
   &__seconds,
   &__am-pm {
-    font-size: 8vw;
+    font-size: 10vw;
     line-height: 1;
-  }
-  &__seconds {
-    // align-self: flex-end;
   }
   &__fecha-dia {
     display: flex;
   }
   &__fecha,
   &__dia {
-    font-size: 4vw;
+    font-size: 6vw;
     line-height: 1;
     word-wrap: break-word;
   }
   &__fecha {
-    flex: 1 1 70%;
-  }
-  &__dia {
-    flex: 1 1 30%;
-    text-align: right;
+    flex: 1 1 100%;
   }
   &__button {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
     background-color: #555;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    line-height: 1;
     border-radius: 0.25rem;
     border: 1px solid #fff;
     line-height: 1;
@@ -186,8 +180,8 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     &::after {
       content: "▲";
     }

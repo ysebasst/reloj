@@ -1,5 +1,8 @@
 module.exports = {
   // ...other vue-cli plugin options...
+  devServer: {
+    disableHostCheck: true,
+  },
   pwa: {
     name: "Hora",
     themeColor: "#333333",
