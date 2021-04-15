@@ -166,8 +166,8 @@ export default {
   }
   &__button {
     position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+    top: 0.125rem;
+    right: 0.125rem;
     background-color: #555;
     font-size: 2rem;
     line-height: 1;
@@ -180,8 +180,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
-    width: 40px;
+    width: 34px;
     &::after {
       content: "▲";
     }

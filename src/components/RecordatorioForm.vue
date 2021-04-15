@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="">
     <div
       class="nuevo-recordatorio"
       @click="formActive = !formActive"
@@ -13,29 +13,78 @@
       :class="{ 'form--active': formActive }"
       @submit.prevent="guardar"
     >
-      <input class="form__control" type="text" placeholder="Titulo" />
-      <textarea
+      <input
         class="form__control"
-        rows="3"
-        placeholder="Descripcion"
-      ></textarea>
-      <input class="form__control" placeholder="Fecha" type="date" />
-      <input class="form__control" placeholder="Hora" type="time" />
+        v-model="titulo"
+        type="text"
+        placeholder="Titulo"
+      />
+      <input
+        class="form__control"
+        v-model="fecha"
+        placeholder="Fecha"
+        type="date"
+      />
+      <input
+        class="form__control"
+        v-model="hora"
+        placeholder="Hora"
+        type="time"
+      />
       <button class="form__button" type="submit">Guardar</button>
     </form>
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations, mapActions } from "vuex";
 export default {
   data() {
     return {
       formActive: false,
+      id: Date.now(),
+      titulo: "",
+      fecha: "",
+      hora: "",
     };
   },
+  computed: {
+    ...mapState(["recordatorios"]),
+  },
+  created() {
+    this.actualizarDatos();
+    this.fetchData();
+  },
   methods: {
+    ...mapMutations(["agregarRecordatorio"]),
+    ...mapActions(["fetchData"]),
+    actualizarDatos() {
+      const date = new Date();
+      this.id = Date.now();
+      this.titulo = "";
+      this.fecha = `${date.getFullYear()}-${this.normalize(
+        date.getMonth() + 1
+      )}-${this.normalize(date.getDate())}`;
+      this.hora = `${this.normalize(date.getHours())}:${this.normalize(
+        date.getMinutes()
+      )}`;
+    },
     guardar() {
-      console.log("Guardado");
+      const newRecordatorio = {
+        id: this.id,
+        titulo: this.titulo,
+        fecha: this.fecha,
+        hora: this.hora,
+      };
+      this.actualizarDatos();
+      this.agregarRecordatorio(newRecordatorio);
+    },
+    normalize(data) {
+      if (data >= 10) {
+        return data.toString();
+      } else {
+        return data.toString().padStart(2, "00");
+      }
     },
   },
 };
@@ -53,7 +102,6 @@ export default {
   align-items: center;
   border-radius: 0.25rem;
   padding: 0.5rem;
-  margin-bottom: 0.25rem;
   &__titulo {
     margin: 0;
   }
@@ -81,14 +129,15 @@ export default {
   transition: all 0.4s;
   &--active {
     max-height: unset;
+    margin-top: 0.25rem;
     // overflow: visible;
   }
   &__control {
+    background-color: #fff;
     padding: 0.5rem;
     border-radius: 0.25rem;
     border: none;
     width: 100%;
-    resize: none;
   }
   &__button {
     background-color: rgba(0, 170, 255, 1);
