@@ -22,6 +22,8 @@
       :class="{ 'reloj__button--minimized': minimized }"
       @click="cambiarMinimizado"
     ></span>
+    <audio ref="hora_enPunto" src="audio/cuckoo-clock-clock.mp3"></audio>
+    <audio ref="hora_recordatorio" src="audio/samsung-lg-alarm.mp3"></audio>
   </div>
 </template>
 
@@ -98,7 +100,8 @@ export default {
     comprobarHora() {
       const date = new Date();
       if (date.getMinutes() === 0 && date.getSeconds() === 0) {
-        new Audio("./audio/cuckoo-clock-clock.mp3").play();
+        this.$refs.hora_enPunto.play();
+        // this.$refs.hora_recordatorio.play();
       }
       if (date.getMinutes() === 0 && date.getSeconds() % 2 === 0) {
         this.enPunto = true;
