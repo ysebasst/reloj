@@ -162,7 +162,7 @@ export default {
   &__dia {
     font-size: 6vw;
     line-height: 1;
-    word-wrap: break-word;
+    white-space: nowrap;
   }
   &__fecha {
     flex: 1 1 100%;
