@@ -1,10 +1,6 @@
 <template>
   <div class="">
-    <div
-      class="nuevo-recordatorio"
-      @click="formActive = !formActive"
-      role="button"
-    >
+    <div class="nuevo-recordatorio" @click="activarFormulario" role="button">
       <h2 class="nuevo-recordatorio__titulo">Nuevo recordatorio</h2>
       <span class="nuevo-recordatorio__icon">+</span>
     </div>
@@ -18,6 +14,7 @@
         v-model="titulo"
         type="text"
         placeholder="Titulo"
+        ref="campoTitulo"
       />
       <input
         class="form__control"
@@ -52,13 +49,17 @@ export default {
     ...mapState(["recordatorios"]),
   },
   created() {
-    this.actualizarDatos();
     this.fetchData();
   },
   methods: {
     ...mapMutations(["agregarRecordatorio"]),
     ...mapActions(["fetchData"]),
+    activarFormulario() {
+      this.formActive = !this.formActive;
+      this.actualizarDatos();
+    },
     actualizarDatos() {
+      this.$refs.campoTitulo.focus();
       const date = new Date();
       this.id = Date.now();
       this.titulo = "";

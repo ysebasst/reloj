@@ -16,12 +16,12 @@
         <span class="reloj__dia">{{ diaActual }}</span>
       </div>
     </div>
-    <span
+    <!-- <span
       role="button"
       class="reloj__button"
       :class="{ 'reloj__button--minimized': minimized }"
       @click="cambiarMinimizado"
-    ></span>
+    ></span> -->
     <audio ref="hora_enPunto" src="audio/cuckoo-clock-clock.mp3"></audio>
     <audio ref="hora_recordatorio" src="audio/samsung-lg-alarm.mp3"></audio>
   </div>
@@ -122,7 +122,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: calc(100vh - 41px);
   padding: 1rem;
   font-weight: bold;
   position: relative;

@@ -13,18 +13,33 @@ export default new Vuex.Store({
     },
     agregarRecordatorio(state, payload) {
       state.recordatorios = [...state.recordatorios, payload];
-      localStorage.setItem("recordatorios", JSON.stringify(state.recordatorios))
+      localStorage.setItem(
+        "recordatorios",
+        JSON.stringify(state.recordatorios)
+      );
+    },
+    borrarRecordatorio(state, payload) {
+      const newRecordatorios = state.recordatorios.filter(
+        (item) => item.id !== payload
+      );
+      state.recordatorios = [...newRecordatorios];
+      localStorage.setItem(
+        "recordatorios",
+        JSON.stringify(state.recordatorios)
+      );
     },
   },
   actions: {
     fetchData({ commit }) {
-      if(localStorage.getItem("recordatorios")){
-        commit("setRecordatorios", JSON.parse(localStorage.getItem("recordatorios")))
+      if (localStorage.getItem("recordatorios")) {
+        commit(
+          "setRecordatorios",
+          JSON.parse(localStorage.getItem("recordatorios"))
+        );
       } else {
-        localStorage.setItem("recordatorios", JSON.stringify([]))
+        localStorage.setItem("recordatorios", JSON.stringify([]));
       }
     },
-    
   },
   modules: {},
 });

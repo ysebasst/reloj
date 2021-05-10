@@ -10,18 +10,29 @@
       <span class="recordatorio__fecha">{{ recordatorio.fecha }}</span>
       <span class="recordatorio__hora">{{ recordatorio.hora }}</span>
       <button class="recordatorio__editar">#</button>
-      <button class="recordatorio__eliminar">X</button>
+      <button
+        class="recordatorio__eliminar"
+        @click="borrarRecordatorio(recordatorio.id)"
+      >
+        X
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import RecordatorioForm from "./RecordatorioForm.vue";
-import { mapState } from "vuex";
+import RecordatorioForm from "../components/RecordatorioForm.vue";
+import { mapState, mapMutations } from "vuex";
 export default {
   components: { RecordatorioForm },
   computed: {
     ...mapState(["recordatorios"]),
+  },
+  methods: {
+    ...mapMutations(["borrarRecordatorio"]),
+    borrar(id) {
+      console.log("borrar:", id);
+    },
   },
 };
 </script>
@@ -32,7 +43,6 @@ export default {
   align-content: flex-start;
   gap: 0.25rem 0;
   padding: 1rem;
-  overflow-y: auto;
 }
 .recordatorio {
   background-color: #fff;
