@@ -122,7 +122,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-height: calc(100vh - 41px);
+  min-height: calc(100vh - 48px);
   padding: 1rem;
   font-weight: bold;
   position: relative;

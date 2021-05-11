@@ -59,7 +59,9 @@ export default {
       this.actualizarDatos();
     },
     actualizarDatos() {
-      this.$refs.campoTitulo.focus();
+      if (this.formActive) {
+        this.$refs.campoTitulo.focus();
+      }
       const date = new Date();
       this.id = Date.now();
       this.titulo = "";

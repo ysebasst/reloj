@@ -4,9 +4,18 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
-    <router-link to="/" class="nav__link">1</router-link>
-    <router-link to="/recordatorios" class="nav__link">2</router-link>
-    <router-link to="/about" class="nav__link">3</router-link>
+    <router-link to="/" class="nav__link">
+      <span> Reloj</span>
+    </router-link>
+    <router-link to="/recordatorios" class="nav__link">
+      <span> Recordatorios</span>
+    </router-link>
+    <router-link to="/temporizador" class="nav__link">
+      <span> Temporizador</span>
+    </router-link>
+    <router-link to="/about" class="nav__link">
+      <span> Notas</span>
+    </router-link>
   </nav>
 </template>
 
@@ -17,25 +26,20 @@ export default {};
 <style lang="scss" scoped>
 .nav {
   display: flex;
-  justify-content: flex-start;
-  padding: 0.25rem;
+  height: 48px;
   background-color: #333;
   border-bottom: 1px solid rgba($color: #fff, $alpha: 0.25);
   &__link {
-    --size: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: var(--size);
-    height: var(--size);
-    border-radius: 0.25rem;
-    border: 1px solid #fff;
+    flex-grow: 1;
     background-color: #333;
     color: #fff;
     font-weight: bold;
     text-decoration: none;
-    &:not(:first-of-type) {
-      margin-left: 0.5rem;
+    &:not(:last-of-type) {
+      border-right: 1px solid rgba($color: #fff, $alpha: 0.25);
     }
     &.router-link-exact-active {
       // color: #42b983;
