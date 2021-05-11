@@ -6,15 +6,27 @@
       v-for="recordatorio in recordatorios"
       :key="recordatorio.id"
     >
-      <span class="recordatorio__titulo">{{ recordatorio.titulo }}</span>
-      <span class="recordatorio__fecha">{{ recordatorio.fecha }}</span>
-      <span class="recordatorio__hora">{{ recordatorio.hora }}</span>
-      <button class="recordatorio__editar">#</button>
+      <div class="recordatorio__info">
+        <span class="recordatorio__titulo">{{ recordatorio.titulo }}</span>
+        <span class="recordatorio__hora">
+          <strong>Hora: </strong>{{ recordatorio.hora }}
+        </span>
+        <span class="recordatorio__fecha">
+          <strong>Fecha: </strong>{{ recordatorio.fecha }}
+        </span>
+      </div>
+      <button class="recordatorio__editar">
+        <img src="img/bxs-edit.svg" alt="icon time" class="recordatorio__img" />
+      </button>
       <button
         class="recordatorio__eliminar"
         @click="borrarRecordatorio(recordatorio.id)"
       >
-        X
+        <img
+          src="img/bxs-trash.svg"
+          alt="icon time"
+          class="recordatorio__img"
+        />
       </button>
     </div>
   </div>
@@ -42,21 +54,67 @@ export default {
   display: grid;
   align-content: flex-start;
   gap: 0.25rem 0;
-  padding: 1rem;
+  padding: 1rem 0;
+  max-width: 327px;
+  margin-left: auto;
+  margin-right: auto;
+  @media screen and (min-width: 768px) {
+    max-width: 720px;
+  }
 }
 .recordatorio {
   background-color: #fff;
   display: flex;
+  align-items: center;
   gap: 0 0.125rem;
   padding: 0.5rem;
   border-radius: 0.25rem;
-  &__titulo,
+  width: 100vw;
+  max-width: 327px;
+  @media screen and (min-width: 768px) {
+    max-width: 720px;
+  }
+  &__info {
+    display: flex;
+    // justify-content: space-between;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    margin-right: 0.5rem;
+    overflow: hidden;
+  }
+
   &__fecha,
   &__hora {
-    white-space: nowrap;
+    color: #333;
   }
   &__titulo {
-    flex: 1 1 100%;
+    margin: 0.25rem 0;
+    flex-grow: 1;
+    width: 100%;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  &__hora {
+    margin-right: 0.5rem;
+  }
+  &__editar,
+  &__eliminar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+  &__editar {
+    background-color: #ffaa00;
+  }
+  &__eliminar {
+    background-color: #f22;
+  }
+  &__img {
+    width: 1rem;
   }
 }
 </style>

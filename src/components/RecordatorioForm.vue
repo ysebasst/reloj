@@ -79,6 +79,9 @@ export default {
         fecha: this.fecha,
         hora: this.hora,
       };
+      if (newRecordatorio.titulo.trim() === "") {
+        newRecordatorio.titulo = "undefined";
+      }
       this.actualizarDatos();
       this.agregarRecordatorio(newRecordatorio);
     },

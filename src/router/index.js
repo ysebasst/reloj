@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Recordatorios from "../views/Recordatorios";
 import Temporizador from "../views/Temporizador";
+import Notas from "../views/Notas";
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: "/temporizador",
     name: "Temporizador",
     component: Temporizador,
+  },
+  {
+    path: "/notas",
+    name: "Notas",
+    component: Notas,
   },
   {
     path: "/about",

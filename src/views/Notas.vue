@@ -1,6 +1,6 @@
 <template>
-  <div class="temporizador">
-    <h1 style="text-align: center">Temporizador</h1>
+  <div class="notas">
+    <h1 style="text-align: center">Notas</h1>
   </div>
 </template>
 

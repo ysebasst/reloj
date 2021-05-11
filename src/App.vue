@@ -23,7 +23,7 @@ export default {
 body {
   margin: 0;
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  background-color: #999;
+  background-color: #555;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
