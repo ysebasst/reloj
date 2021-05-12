@@ -2,14 +2,17 @@
   <div id="app">
     <Navigation />
     <router-view />
+    <ModalEditar/>
   </div>
 </template>
 
 <script>
 import Navigation from "./components/Navigation";
+import ModalEditar from "./components/ModalEditar";
 export default {
   components: {
     Navigation,
+    ModalEditar,
   },
 };
 </script>

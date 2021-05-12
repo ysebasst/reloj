@@ -15,7 +15,7 @@
           <strong>Fecha: </strong>{{ recordatorio.fecha }}
         </span>
       </div>
-      <button class="recordatorio__editar">
+      <button class="recordatorio__editar" @click="editar(recordatorio)">
         <img src="img/bxs-edit.svg" alt="icon time" class="recordatorio__img" />
       </button>
       <button
@@ -41,9 +41,16 @@ export default {
     ...mapState(["recordatorios"]),
   },
   methods: {
-    ...mapMutations(["borrarRecordatorio"]),
-    borrar(id) {
-      console.log("borrar:", id);
+    ...mapMutations(["borrarRecordatorio", "setEditarActive", "setEditarData"]),
+    editar(data) {
+      const newData = {
+        id: data.id,
+        titulo: data.titulo,
+        fecha: data.fecha,
+        hora: data.hora,
+      };
+      this.setEditarActive(true);
+      this.setEditarData(newData);
     },
   },
 };
@@ -66,7 +73,6 @@ export default {
   background-color: #fff;
   display: flex;
   align-items: center;
-  gap: 0 0.125rem;
   padding: 0.5rem;
   border-radius: 0.25rem;
   width: 100vw;
@@ -77,19 +83,18 @@ export default {
   &__info {
     display: flex;
     // justify-content: space-between;
-    flex-wrap: wrap;
+    flex-direction: column;
     flex-grow: 1;
     margin-right: 0.5rem;
     overflow: hidden;
   }
-
   &__fecha,
   &__hora {
     color: #333;
   }
   &__titulo {
     margin: 0.25rem 0;
-    flex-grow: 1;
+    // flex-grow: 1;
     width: 100%;
     font-weight: bold;
     white-space: nowrap;
@@ -114,7 +119,7 @@ export default {
     background-color: #f22;
   }
   &__img {
-    width: 1rem;
+    width: 1.25rem;
   }
 }
 </style>

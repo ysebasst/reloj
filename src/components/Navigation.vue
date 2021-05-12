@@ -57,6 +57,7 @@ export default {};
       background-color: #aaa;
       filter: invert(1);
       border-right: none;
+      box-shadow: 0 1.5rem 1.5rem rgba($color: #fff, $alpha: 0.25) inset;
     }
   }
 }

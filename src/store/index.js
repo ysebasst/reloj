@@ -6,6 +6,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     recordatorios: [],
+    editarActive: false,
+    editarData: {
+      id: 0,
+      titulo: "",
+      fecha: "",
+      hora: "",
+    },
   },
   mutations: {
     setRecordatorios(state, payload) {
@@ -28,6 +35,12 @@ export default new Vuex.Store({
         JSON.stringify(state.recordatorios)
       );
     },
+    setEditarActive(state, payload) {
+      state.editarActive = payload;
+    },
+    setEditarData(state, payload) {
+      state.editarData = payload;
+    },
   },
   actions: {
     fetchData({ commit }) {
@@ -39,6 +52,13 @@ export default new Vuex.Store({
       } else {
         localStorage.setItem("recordatorios", JSON.stringify([]));
       }
+    },
+    updateRecordatorios({ commit, state }, payload) {
+      commit("setRecordatorios", payload);
+      localStorage.setItem(
+        "recordatorios",
+        JSON.stringify(state.recordatorios)
+      );
     },
   },
   modules: {},
