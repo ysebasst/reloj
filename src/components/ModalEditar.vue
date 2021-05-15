@@ -5,6 +5,7 @@
     @click="cancelar"
   >
     <form class="form" @submit.prevent="actualizar">
+      <h2 class="form__title">Editar recordatorio</h2>
       <input
         class="form__control"
         v-model="editarData.titulo"
@@ -32,8 +33,8 @@
         >
           Cancelar
         </button>
-        <button class="form__button form__button--actualizar" type="submit">
-          Actualizar
+        <button class="form__button form__button--editar" type="submit">
+          Editar
         </button>
       </div>
     </form>
@@ -50,8 +51,9 @@ export default {
   watch: {
     editarActive() {
       if (this.editarActive) {
-        // console.log(this.$refs.campoEditarTitulo);
         this.$refs.campoEditarTitulo.focus();
+      } else {
+        this.$refs.campoEditarTitulo.blur();
       }
     },
   },
@@ -97,12 +99,14 @@ export default {
   width: 100vw;
   height: 100vh;
   padding: 1.5rem;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
+  transform: scale(0);
+  transition: transform 0.3s;
   &--active {
-    display: flex;
+    transform: scale(1);
   }
 }
 .form {
@@ -111,26 +115,32 @@ export default {
   padding: 1.5rem;
   border-radius: 0.5rem;
   background-color: #fff;
+  &__title {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    text-align: center;
+  }
   &__control {
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
+    width: 100%;
   }
   &__buttons {
     display: flex;
     border-radius: 0.25rem;
   }
   &__button {
-    flex-grow: 1;
+    flex-basis: 50%;
     padding: 0.5rem 1rem;
     border: none;
     cursor: pointer;
     outline: none;
     color: #fff;
     &--cancelar {
-      background-color: #f33;
+      background-color: #333;
     }
-    &--actualizar {
-      background-color: #3ff;
+    &--editar {
+      background-color: #3a3;
     }
   }
 }

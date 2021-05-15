@@ -2,17 +2,34 @@
   <div id="app">
     <Navigation />
     <router-view />
-    <ModalEditar/>
+    <ModalEditar />
   </div>
 </template>
 
 <script>
 import Navigation from "./components/Navigation";
 import ModalEditar from "./components/ModalEditar";
+import { mapMutations, mapState } from "vuex";
 export default {
   components: {
     Navigation,
     ModalEditar,
+  },
+  watch: {
+    routeName() {
+      if (this.$route.name !== "Recordatorios") {
+        this.setEditarActive(false);
+      }
+    },
+  },
+  computed: {
+    ...mapState(["editarActive"]),
+    routeName() {
+      return this.$route.name;
+    },
+  },
+  methods: {
+    ...mapMutations(["setEditarActive"]),
   },
 };
 </script>
