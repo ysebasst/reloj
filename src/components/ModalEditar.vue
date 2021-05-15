@@ -116,7 +116,7 @@ export default {
   border-radius: 0.5rem;
   background-color: #fff;
   &__title {
-    margin-bottom: 1rem;
+    margin: 0 0 1rem;
     font-size: 1.25rem;
     text-align: center;
   }
