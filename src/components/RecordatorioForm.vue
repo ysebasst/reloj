@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="recordatorio-form">
     <div class="nuevo-recordatorio" @click="activarFormulario" role="button">
       <h2 class="nuevo-recordatorio__titulo">Nuevo recordatorio</h2>
       <span class="nuevo-recordatorio__icon">+</span>
@@ -97,6 +97,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.recordatorio-form {
+  background-color: #fff;
+  border-radius: 0.25rem;
+}
 .nuevo-recordatorio {
   cursor: pointer;
   outline: none;
@@ -134,6 +138,7 @@ export default {
   overflow: hidden;
   transition: all 0.4s;
   &--active {
+    padding: 0.5rem;
     max-height: unset;
     margin-top: 0.25rem;
     // overflow: visible;
@@ -142,7 +147,7 @@ export default {
     background-color: #fff;
     padding: 0.5rem;
     border-radius: 0.25rem;
-    border: none;
+    border: 1px solid rgba($color: #000000, $alpha: 0.5);
     width: 100%;
   }
   &__button {

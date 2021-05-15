@@ -61,7 +61,7 @@ export default {
   display: grid;
   align-content: flex-start;
   gap: 0.25rem 0;
-  padding: 1rem 0;
+  padding: 1rem 0.5rem;
   max-width: 327px;
   margin-left: auto;
   margin-right: auto;
@@ -75,7 +75,7 @@ export default {
   align-items: center;
   padding: 0.5rem;
   border-radius: 0.25rem;
-  width: 100vw;
+  width: calc(100vw - 1rem);
   max-width: 327px;
   @media screen and (min-width: 768px) {
     max-width: 720px;
