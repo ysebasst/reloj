@@ -20,7 +20,7 @@
       </button>
       <button
         class="recordatorio__eliminar"
-        @click="borrarRecordatorio(recordatorio.id)"
+        @click="borrarRecordatorio(recordatorio)"
       >
         <img
           src="img/bxs-trash.svg"
@@ -43,14 +43,8 @@ export default {
   methods: {
     ...mapMutations(["borrarRecordatorio", "setEditarActive", "setEditarData"]),
     editar(data) {
-      const newData = {
-        id: data.id,
-        titulo: data.titulo,
-        fecha: data.fecha,
-        hora: data.hora,
-      };
       this.setEditarActive(true);
-      this.setEditarData(newData);
+      this.setEditarData({ ...data });
     },
   },
 };

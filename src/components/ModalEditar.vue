@@ -72,19 +72,20 @@ export default {
       }
     },
     actualizar() {
-      const data = {
-        id: this.editarData.id,
-        titulo: this.editarData.titulo,
-        fecha: this.editarData.fecha,
-        hora: this.editarData.hora,
-      };
-      const newRecordatorios = this.recordatorios.map((item) => {
-        if (item.id === data.id) {
-          item = data;
-        }
-        return item;
-      });
-      this.updateRecordatorios(newRecordatorios);
+      // const data = {
+      //   _id: this._id,
+      //   id: this.editarData.id,
+      //   titulo: this.editarData.titulo,
+      //   fecha: this.editarData.fecha,
+      //   hora: this.editarData.hora,
+      // };
+      // const newRecordatorios = this.recordatorios.map((item) => {
+      //   if (item.id === data.id) {
+      //     item = data;
+      //   }
+      //   return item;
+      // });
+      this.updateRecordatorios(this.editarData);
       this.setEditarActive(false);
     },
   },
