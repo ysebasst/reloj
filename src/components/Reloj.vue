@@ -16,12 +16,12 @@
         <span class="reloj__dia">{{ diaActual }}</span>
       </div>
     </div>
-    <!-- <span
+    <span
       role="button"
       class="reloj__button"
       :class="{ 'reloj__button--minimized': minimized }"
-      @click="cambiarMinimizado"
-    ></span> -->
+      @click="minimized = !minimized"
+    ></span>
     <audio ref="hora_enPunto" src="audio/cuckoo-clock-clock.mp3"></audio>
     <audio ref="hora_recordatorio" src="audio/samsung-lg-alarm.mp3"></audio>
   </div>
@@ -31,7 +31,7 @@
 export default {
   data() {
     return {
-      minimized: false,
+      minimized: true,
       horaActual: "00:00",
       seconds: "00",
       am_pm: "AM",
@@ -67,9 +67,6 @@ export default {
     setInterval(this.actualizarHora, 1000);
   },
   methods: {
-    cambiarMinimizado() {
-      this.minimized = !this.minimized;
-    },
     actualizarHora() {
       const date = new Date();
       // Hora Actual
@@ -100,7 +97,7 @@ export default {
     comprobarHora() {
       const date = new Date();
       if (date.getMinutes() === 0 && date.getSeconds() === 0) {
-        this.$refs.hora_enPunto.play();
+        // this.$refs.hora_enPunto.play();
         // this.$refs.hora_recordatorio.play();
       }
       if (date.getMinutes() === 0 && date.getSeconds() % 2 === 0) {
@@ -122,12 +119,23 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-height: calc(100vh - 48px);
   padding: 1rem;
   font-weight: bold;
   position: relative;
+  min-height: calc(100vh - 48px);
   &--minimized {
     min-height: unset;
+    .reloj__hora {
+      font-size: 24vmin;
+    }
+    .reloj__seconds,
+    .reloj__am-pm {
+      font-size: 10vmin;
+    }
+    .reloj__fecha,
+    .reloj__dia {
+      font-size: 6vmin;
+    }
   }
   &__content {
     display: flex;
@@ -168,22 +176,18 @@ export default {
     flex: 1 1 100%;
   }
   &__button {
-    position: absolute;
-    top: 0.125rem;
-    right: 0.125rem;
     background-color: #555;
     font-size: 2rem;
-    line-height: 1;
-    border-radius: 0.25rem;
-    border: 1px solid #fff;
-    line-height: 1;
     cursor: pointer;
     outline: 0;
     user-select: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 34px;
+    display: block;
+    text-align: center;
+    padding: 0.5rem;
+    width: 100%;
+    &:hover {
+      background-color: #444;
+    }
     &::after {
       content: "▲";
     }
