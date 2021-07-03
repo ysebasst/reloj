@@ -185,15 +185,21 @@ export default {
     text-align: center;
     padding: 0.5rem;
     width: 100%;
-    &:hover {
-      background-color: #444;
-    }
+    transition: filter .3s;
     &::after {
       content: "▲";
     }
     &--minimized {
       &::after {
         content: "▼";
+      }
+    }
+    @media screen and (min-width: 992px){
+      &:hover {
+        filter: brightness(0.75);
+      }
+      &:active {
+        filter: brightness(1.25);
       }
     }
   }
