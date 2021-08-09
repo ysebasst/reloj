@@ -31,7 +31,7 @@
 export default {
   data() {
     return {
-      minimized: true,
+      minimized: false,
       horaActual: "00:00",
       seconds: "00",
       am_pm: "AM",
@@ -123,6 +123,8 @@ export default {
   font-weight: bold;
   position: relative;
   min-height: calc(100vh - 48px);
+  user-select: none;
+
   &--minimized {
     min-height: unset;
     .reloj__hora {
@@ -185,7 +187,7 @@ export default {
     text-align: center;
     padding: 0.5rem;
     width: 100%;
-    transition: filter .3s;
+    transition: filter 0.3s;
     &::after {
       content: "▲";
     }
@@ -194,7 +196,7 @@ export default {
         content: "▼";
       }
     }
-    @media screen and (min-width: 992px){
+    @media screen and (min-width: 992px) {
       &:hover {
         filter: brightness(0.75);
       }
