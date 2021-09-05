@@ -11,10 +11,7 @@
           <span class="reloj__am-pm">{{ am_pm }}</span>
         </div>
       </div>
-      <div class="reloj__fecha-dia">
-        <span class="reloj__fecha">{{ fechaActual }}</span>
-        <span class="reloj__dia">{{ diaActual }}</span>
-      </div>
+      <div class="reloj__fecha">{{ diaActual }}, {{ fechaActual }}</div>
     </div>
     <span
       role="button"
@@ -35,7 +32,7 @@ export default {
       horaActual: "00:00",
       seconds: "00",
       am_pm: "AM",
-      fechaActual: "1 Enero 2000",
+      fechaActual: "1 Enero",
       diaActual: "Lunes",
       enPunto: false,
       arrayMes: [
@@ -85,8 +82,7 @@ export default {
       // Fecha Actual
       const dia = date.getDate();
       const mes = this.arrayMes[date.getMonth()];
-      const year = date.getFullYear();
-      this.fechaActual = `${dia} ${mes} ${year}`;
+      this.fechaActual = `${dia} ${mes}`;
       // Dia Actual
       this.diaActual = this.arraySemana[date.getDay()];
       this.comprobarHora();
@@ -134,8 +130,7 @@ export default {
     .reloj__am-pm {
       font-size: 10vmin;
     }
-    .reloj__fecha,
-    .reloj__dia {
+    .reloj__fecha {
       font-size: 6vmin;
     }
   }
@@ -145,6 +140,7 @@ export default {
   }
   &__hora-completa {
     display: flex;
+    font-family: monospace;
   }
   &__hora {
     flex: 1 1 100%;
@@ -154,7 +150,7 @@ export default {
     align-self: center;
   }
   &__seconds-am-pm {
-    margin-left: 1rem;
+    margin-left: 2vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -165,17 +161,12 @@ export default {
     font-size: 10vw;
     line-height: 1;
   }
-  &__fecha-dia {
-    display: flex;
-  }
-  &__fecha,
-  &__dia {
-    font-size: 6vw;
-    line-height: 1;
-    white-space: nowrap;
-  }
   &__fecha {
-    flex: 1 1 100%;
+    text-align: center;
+    font-size: 6vw;
+    text-transform: uppercase;
+    line-height: 1.15;
+    white-space: nowrap;
   }
   &__button {
     background-color: #555;
