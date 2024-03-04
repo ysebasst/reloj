@@ -62,7 +62,7 @@ export default {
       bateriaActual: 0,
     };
   },
-  created() {
+  mounted() {
     actualizarHora();
     setInterval(this.actualizarHora, 10);
     getBatteryLevel();
