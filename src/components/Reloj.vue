@@ -116,7 +116,7 @@ export default {
       const batteryManager = await navigator.getBattery();
       const batteryLevel = batteryManager.level;
 
-      this.bateriaActual = batteryLevel * 100;
+      this.bateriaActual = Math.floor(batteryLevel * 100);
     }
   },
 };
@@ -178,7 +178,8 @@ export default {
     font-size: 10vw;
     line-height: 1;
   }
-  &__fecha {
+  &__fecha,
+  &__bateria {
     text-align: center;
     font-size: 6vw;
     text-transform: uppercase;
