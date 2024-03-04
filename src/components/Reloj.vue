@@ -12,6 +12,7 @@
         </div>
       </div>
       <div class="reloj__fecha">{{ diaActual }}, {{ fechaActual }}</div>
+      <div class="reloj__bateria" v-if="bateriaActual">{{ bateriaActual }}%</div>
     </div>
     <span
       role="button"
@@ -58,10 +59,14 @@ export default {
         "Viernes",
         "Sabado",
       ],
+      bateriaActual: 0,
     };
   },
   created() {
-    setInterval(this.actualizarHora, 1000);
+    actualizarHora();
+    setInterval(this.actualizarHora, 10);
+    getBatteryLevel();
+    setInterval(this.getBatteryLevel, 10);
   },
   methods: {
     actualizarHora() {
@@ -102,6 +107,17 @@ export default {
         this.enPunto = false;
       }
     },
+    async getBatteryLevel() {
+      if (!navigator.getBattery) {
+        console.log("El administrador de batería no es compatible");
+        return;
+      }
+
+      const batteryManager = await navigator.getBattery();
+      const batteryLevel = batteryManager.level;
+
+      this.bateriaActual = batteryLevel * 100;
+    }
   },
 };
 </script>
@@ -130,7 +146,8 @@ export default {
     .reloj__am-pm {
       font-size: 10vmin;
     }
-    .reloj__fecha {
+    .reloj__fecha,
+    .reloj__bateria {
       font-size: 6vmin;
     }
   }
