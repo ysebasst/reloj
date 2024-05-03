@@ -12,7 +12,11 @@
         </div>
       </div>
       <div class="reloj__fecha">{{ diaActual }}, {{ fechaActual }}</div>
-      <div class="reloj__bateria" v-if="bateriaActual">{{ bateriaActual }}%</div>
+      <div
+        class="reloj__bateria"
+        :class="{ 'reloj__bateria--high': bateriaActual >= 90, 'reloj__bateria--low': bateriaActual <= 10 }"
+        v-if="bateriaActual"
+      >{{ bateriaActual }}%</div>
     </div>
     <span
       role="button"
@@ -185,6 +189,15 @@ export default {
     text-transform: uppercase;
     line-height: 1.15;
     white-space: nowrap;
+  }
+  &__bateria {
+
+    &--high {
+      color: #00ff00;
+    }
+    &--low {
+      color: #ff0000;
+    }
   }
   &__button {
     background-color: #555;
